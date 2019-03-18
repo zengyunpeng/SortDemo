@@ -43,6 +43,7 @@ public class Test {
         }
     }
 
+    //最原始的插入排序
     @org.junit.Test
     public void simpleInsert() {
         int arr[] = {3, 65, 334, 68, 45, 89, 23, 44};
@@ -62,6 +63,7 @@ public class Test {
         }
     }
 
+    //插入排序
     @org.junit.Test
     public void insert2() {
         int j;
@@ -130,6 +132,58 @@ public class Test {
         }
         for (int k = 0; k < arr.length; k++) {
             System.out.println(arr[k]);
+        }
+    }
+
+    /**
+     * 第一趟增量为5，直接插入排序第1，6个元素，第2，7个元素，第3，8个元素，第4，9个元素，第5，10个元素
+     * <p>
+     * 第二趟增量为3，直接插入排序第1，3，6，9个元素，第2，5，8个元素，第7，10个元素进行排序
+     * <p>
+     * 第三趟增量为1，直接插入排序第1到10个元素进行排序。
+     */
+    @org.junit.Test
+    public void shellSort() {
+        int a[] = {50, 26, 38, 80, 70, 90, 8, 30, 40, 20};
+        int dk;
+        int i, j;
+        for (dk = a.length / 2; dk >= 1; dk = dk / 2) {        //步长变化,实际上共有dk个分组进行插入排序
+            for (i = 0; i < dk; i++) {                    //分别对每个dk分组进行排序
+                for (j = i + dk; j < a.length; j += dk) {
+                    if (a[j] < a[j - dk]) {
+                        int temp = a[j];
+                        int k = j - dk;
+                        while (k >= 0 && a[k] > temp) {
+                            a[k + dk] = a[k];
+                            k -= dk;
+                        }
+                        a[k + dk] = temp;
+                    }
+                }
+            }
+
+        }
+
+        for (int anA : a) {
+            System.out.print(anA + " ");
+        }
+    }
+
+    @org.junit.Test
+    public void qucikSort() {//快速排序（Quicksort）是对冒泡排序的一种改进
+        int arr[] = {50, 26, 38, 80, 70, 90, 8, 30, 40, 20};
+        int standard;//基准数
+        int j;
+        int k;
+        int left;
+        int right;
+        int temp;
+        standard = arr[0];
+        j = 0;
+        k = arr.length;
+        while (j < k) {
+
+
         }
     }
 }
